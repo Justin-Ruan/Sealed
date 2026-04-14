@@ -2,6 +2,8 @@ import { useState } from 'react'
 import PhoneFrame from './components/PhoneFrame'
 import LandingScreen from './screens/LandingScreen'
 import ChoosingScreen from './screens/ChoosingScreen'
+import EnvelopeScreen from './screens/EnvelopeScreen'
+import EditorScreen from './screens/EditorScreen'
 
 export default function App() {
   const [screen, setScreen] = useState('landing')
@@ -16,7 +18,18 @@ export default function App() {
 
   const screens = {
     landing:  <LandingScreen onBegin={() => navigate('choosing', 'forward')} />,
-    choosing: <ChoosingScreen onBack={() => navigate('landing', 'back')} />,
+    choosing: <ChoosingScreen
+                onBack={() => navigate('landing', 'back')}
+                onNext={() => navigate('envelope', 'forward')}
+              />,
+    envelope: <EnvelopeScreen
+                onBack={() => navigate('choosing', 'back')}
+                onNext={() => navigate('editor', 'forward')}
+              />,
+    editor:   <EditorScreen
+                onBack={() => navigate('envelope', 'back')}
+                onDone={() => {/* wire done here */}}
+              />,
   }
 
   return (
