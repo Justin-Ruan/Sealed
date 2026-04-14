@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { asset } from '../utils/asset'
 
 const TOOLS = [
   { id: 'paper',   label: 'Paper',   icon: '/paper.svg'   },
@@ -41,7 +42,7 @@ export default function EditorScreen({ onBack, onDone }) {
     <div style={{
       width: '100%',
       height: '100%',
-      backgroundImage: 'url(/background.png)',
+      backgroundImage: `url(${asset('/background.png')})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center top',
       display: 'flex',
@@ -68,10 +69,10 @@ export default function EditorScreen({ onBack, onDone }) {
             alignItems: 'center',
           }}
         >
-          <img src="/back button.png" alt="back" style={{ width: 40, height: 46, objectFit: 'contain' }} />
+          <img src={asset('/back button.png')} alt="back" style={{ width: 40, height: 46, objectFit: 'contain' }} />
         </button>
 
-        <img src="/sealed title.png" alt="*sealed." style={{ height: 24, objectFit: 'contain' }} />
+        <img src={asset('/sealed title.png')} alt="*sealed." style={{ height: 24, objectFit: 'contain' }} />
 
         <button
           onClick={onDone}
@@ -113,7 +114,7 @@ export default function EditorScreen({ onBack, onDone }) {
         }}>
           {currentPaperSrc ? (
             <img
-              src={currentPaperSrc}
+              src={asset(currentPaperSrc)}
               alt="paper"
               style={{ width: 260, height: 340, objectFit: 'contain' }}
             />
@@ -165,7 +166,7 @@ export default function EditorScreen({ onBack, onDone }) {
               }}
             >
               <img
-                src={paper.src}
+                src={asset(paper.src)}
                 alt={paper.id}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
               />
@@ -211,7 +212,7 @@ export default function EditorScreen({ onBack, onDone }) {
               justifyContent: 'center',
             }}>
               <img
-                src={tool.icon}
+                src={asset(tool.icon)}
                 alt={tool.label}
                 style={{ width: 24, height: 24 }}
               />

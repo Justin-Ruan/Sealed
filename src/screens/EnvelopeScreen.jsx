@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { asset } from '../utils/asset'
 
 const ENVELOPES = [
   { id: 'white', src: '/evenlop white.png' },
@@ -23,7 +24,7 @@ export default function EnvelopeScreen({ onBack, onNext }) {
       width: '100%',
       height: '100%',
       position: 'relative',
-      backgroundImage: 'url(/background.png)',
+      backgroundImage: `url(${asset('/background.png')})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center top',
       display: 'flex',
@@ -52,9 +53,9 @@ export default function EnvelopeScreen({ onBack, onNext }) {
             justifyContent: 'center',
           }}
         >
-          <img src="/back button.png" alt="back" style={{ width: 40, height: 46, objectFit: 'contain' }} />
+          <img src={asset('/back button.png')} alt="back" style={{ width: 40, height: 46, objectFit: 'contain' }} />
         </button>
-        <img src="/sealed title.png" alt="*sealed." style={{ height: 24, objectFit: 'contain' }} />
+        <img src={asset('/sealed title.png')} alt="*sealed." style={{ height: 24, objectFit: 'contain' }} />
         <div style={{ width: 36 }} />
       </div>
 
@@ -118,7 +119,7 @@ export default function EnvelopeScreen({ onBack, onNext }) {
               }}
             >
               <img
-                src={env.src}
+                src={asset(env.src)}
                 alt={env.id}
                 draggable={false}
                 style={{

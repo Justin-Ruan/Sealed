@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { asset } from '../utils/asset'
 
 export default function ChoosingScreen({ onBack, onNext }) {
   const [selected, setSelected] = useState(false)
@@ -8,7 +9,7 @@ export default function ChoosingScreen({ onBack, onNext }) {
       width: '100%',
       height: '100%',
       position: 'relative',
-      backgroundImage: 'url(/choosing.png)',
+      backgroundImage: `url(${asset('/choosing.png')})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center 40px',
     }}>

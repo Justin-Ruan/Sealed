@@ -1,10 +1,12 @@
+import { asset } from '../utils/asset'
+
 export default function LandingScreen({ onBegin }) {
   return (
     <div style={{
       width: '100%',
       height: '100%',
       position: 'relative',
-      backgroundImage: 'url(/landing.png)',
+      backgroundImage: `url(${asset('/landing.png')})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center top',
     }}>
