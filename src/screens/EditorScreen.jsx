@@ -22,7 +22,7 @@ const FRAME_OPTIONS = [
   { id: 'frame4', src: '/frame design 4.png', selectable: false },
 ]
 
-const INITIAL_DECOS = [
+export const INITIAL_DECOS = [
   { src: 'deco blue flower.png',  width: 92,  height: 92,  initX: -18, initY: -32, rotate: '-10deg' },
   { src: 'deco ticket.png',       width: 185, height: 80,  initX: 195, initY: 10,  rotate: '6deg'   },
   { src: 'deco photo booth.png',  width: 108, height: 272, initX: -55, initY: 38,  rotate: '-4deg'  },
@@ -47,18 +47,7 @@ export default function EditorScreen({
   const maxZ       = useRef(INITIAL_DECOS.length + 1)
 
   useEffect(() => {
-    if (showDecos && decos.length === 0) {
-      setCanvasPaper('red')
-      setDecos(INITIAL_DECOS.map((d, i) => ({
-        src: d.src,
-        x: d.initX,
-        y: d.initY,
-        width: d.width,
-        height: d.height,
-        rotate: d.rotate,
-        zIndex: i + 1,
-      })))
-    }
+    if (showDecos) setCanvasPaper('red')
   }, [showDecos])
 
   const handleToolSelect = (toolId) => {

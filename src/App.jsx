@@ -3,7 +3,7 @@ import PhoneFrame from './components/PhoneFrame'
 import LandingScreen from './screens/LandingScreen'
 import ChoosingScreen from './screens/ChoosingScreen'
 import EnvelopeScreen from './screens/EnvelopeScreen'
-import EditorScreen from './screens/EditorScreen'
+import EditorScreen, { INITIAL_DECOS } from './screens/EditorScreen'
 import TakePhotoScreen from './screens/TakePhotoScreen'
 import SendingScreen from './screens/SendingScreen'
 
@@ -48,6 +48,11 @@ export default function App() {
               />,
     takePhoto: <TakePhotoScreen
                 onPhotoTaken={() => {
+                  setDecos(INITIAL_DECOS.map((d, i) => ({
+                    src: d.src, x: d.initX, y: d.initY,
+                    width: d.width, height: d.height,
+                    rotate: d.rotate, zIndex: i + 1,
+                  })))
                   setShowDecos(true)
                   navigate('editor', 'back')
                 }}
