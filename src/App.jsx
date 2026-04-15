@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PhoneFrame from './components/PhoneFrame'
 import LandingScreen from './screens/LandingScreen'
 import ChoosingScreen from './screens/ChoosingScreen'
@@ -15,6 +15,17 @@ export default function App() {
   const [paperTapped, setPaperTapped]     = useState(false)
   const [selectedFrame, setSelectedFrame] = useState(null)
   const [decos, setDecos]                 = useState([])
+  const [scale, setScale]                 = useState(1)
+
+  useEffect(() => {
+    const update = () => setScale(Math.min(
+      window.innerHeight / 844,
+      window.innerWidth  / 390,
+    ))
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
   const navigate = (newScreen, dir = 'forward') => {
     setDirection(dir)
@@ -61,13 +72,19 @@ export default function App() {
 
   return (
     <div style={{
-      minHeight: '100vh',
+      width: '100vw',
+      height: '100vh',
       background: 'radial-gradient(ellipse at center, #d6c4a8 0%, #b8a48a 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '40px 20px',
+      overflow: 'hidden',
     }}>
+      <div style={{
+        transform: `scale(${scale})`,
+        transformOrigin: 'center',
+        flexShrink: 0,
+      }}>
       <PhoneFrame>
         <div
           key={animKey}
@@ -80,6 +97,7 @@ export default function App() {
           {screens[screen]}
         </div>
       </PhoneFrame>
+      </div>
     </div>
   )
 }
